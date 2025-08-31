@@ -1,24 +1,29 @@
 const arr = [1, 1, 2, 3, 3, 4];
-const newArray = [];
-
-for (i = 0; i < arr.length; i++) {
-    // აქ ცარიელზე შევამოწმებ და დავამატებ
-    arr.some(uniqueValues); // აქ რომ some წავშალო მხოლოდ
-    if (true) {
-        newArray.push(arr[i]);
-    }  
-}
-
-console.log(newArray);
 
 function uniqueValues(arr) {
-    if ( 
-        // !false
-        // newArray.some() == arr    - ასე? some-ს შიგნით ხო ფუნქცია უნდა და რანაირად
-        newArray[i] != arr) {
-        return true;
-    } else {
-        return false;
+    const newArray = [];
+
+    for (i = 0; i < arr.length; i++) {
+        const item = arr[i];
+
+        if (!i) {
+            newArray.push(item);
+            continue;
+        }
+        
+        const isExisting = newArray.some(
+            function (arrItem) {
+                return arrItem == item;
+            }
+        )
+
+        if(!isExisting) {
+            newArray.push(item);
+        }
     }
+    return newArray;
 }
 
+console.log(
+    uniqueValues(arr)
+)

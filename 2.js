@@ -1,17 +1,39 @@
 const arr = [1, 1, 2, 3, 3, 4];
-const newArray = [];
 
 function uniqueValues (arr) {
-    for (i = 0; i < arr.length; i++) {
-        console.log('a');
-        if ( newArray.some(function(element)  { 
-            console.log('b');
-            return arr[i] != element; 
-        } ) )
 
-        { newArray.push(arr[i]);}
+    const newArray = [];
+
+    for (i = 0; i < arr.length; i++) {
+
+        const item = arr[i];
+
+        if(newArray == 0) {
+
+            newArray.push(item);
+
+            continue;
+
+        }
+
+        const isNewArray = newArray.some(
+
+            function(element)  { 
+
+                return element == item;  
+
+            })   
+
+        if (!isNewArray) {
+
+            newArray.push(item);
+        }
+
     }
+
+    return newArray;
 }
 
-uniqueValues(arr);
-console.log(newArray);
+console.log(
+    uniqueValues(arr)
+);

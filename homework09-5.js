@@ -3,28 +3,46 @@ const todos = [
   { id: 2, task: 'Do homework', completed: true }
 ];
 
-// function addTodo(task) { /* ... */ }
-// function completeTodo(id) { /* ... */ }
-// function deleteTodo(id) { /* ... */ }
-// function listTodos(filter = 'all') { /* ... */ }
-
-// todos = addTodo(todos, 'Read a book');
-// completeTodo(todos, 1);
-
-// console.log(listTodos(todos, 'all'));
-// console.log(listTodos(todos, 'completed'));
-// console.log(listTodos(todos, 'pending'));
-
-// const uid = (() => (id = 0, () => id++))();
-// let j = todos.lastIndexOf();
-let j = todos.length;
-let uid = j+1;
-console.log(uid);
+let id = "id" + Math.random().toString(16).slice(2);
+console.log(id);
 
 addTodo('buy potato');
+completeTodo(id);
+deleteTodo(id);
+listTodos('pending');
 
 function addTodo(task) {
-    let obj = { id: uid, task: task, completed: false};
+    let obj = { id: id, task: task, completed: false};
     todos.push(obj);
     console.log(todos);
 }
+
+function completeTodo(id) {
+  let obj = todos.find(item => item.id === id );
+  if (obj) {
+    obj.completed = true;
+  }
+  console.log(todos);
+}
+
+function deleteTodo(id) {
+  let obj = todos.find(item => item.id === id );
+  const index = todos.indexOf(obj);
+  if (index > -1) {
+    todos.splice(index, 1);
+  }
+  console.log(todos);
+}
+
+function listTodos(filtered) {
+  if (filtered === 'all') {
+    console.log(todos);
+  } else if ( filtered === 'completed') {
+    const newArray = todos.filter(item => item.completed === true);
+    console.log(newArray);
+  } {
+    const newArray = todos.filter(item => item.completed !== true);
+    console.log(newArray);
+  }
+}
+
